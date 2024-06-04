@@ -1,3 +1,48 @@
-<div>
-    {{$people | async | json}}
-</div>
+@if(vm$ | async; as vm){
+    <!-- <div>
+        {{vm | json}}
+    </div> -->
+    <button (click)="onLoadPeople()" [disabled]="vm.isLoadingPeople">Load People</button>
+
+    <div>
+        <h2>Star Wars Characters</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Height</th>
+              <th>Mass</th>
+              <th>Birth Year</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(person of vm.people; track $index) {
+                <tr (click)="loadPersonDetails(person.url)">
+                    <td><a>{{ person.name }}</a></td>
+                    <td><a>{{ person.height }}</a></td>
+                    <td><a>{{ person.mass }}</a></td>
+                    <td><a>{{ person.birth_year }}</a></td>
+                    <td><a>{{ person.gender }}</a></td>
+                  </tr>
+            }
+          </tbody>
+        </table>
+        <!-- <div class="pagination">
+          <button (click)="loadPrevious()" [disabled]="!previous">Previous</button>
+          <button (click)="loadNext()" [disabled]="!next">Next</button>
+        </div> -->
+      </div>
+
+      @if(vm.selectedPerson) {
+        <h3>Details for {{ vm.selectedPerson.name }}</h3>
+        <p><strong>Height:</strong> {{ vm.selectedPerson.height }}</p>
+        <p><strong>Mass:</strong> {{ vm.selectedPerson.mass }}</p>
+        <p><strong>Hair Color:</strong> {{ vm.selectedPerson.hair_color }}</p>
+        <p><strong>Skin Color:</strong> {{ vm.selectedPerson.skin_color }}</p>
+        <p><strong>Eye Color:</strong> {{ vm.selectedPerson.eye_color }}</p>
+        <p><strong>Birth Year:</strong> {{ vm.selectedPerson.birth_year }}</p>
+        <p><strong>Gender:</strong> {{ vm.selectedPerson.gender }}</p>
+      }
+      
+}
