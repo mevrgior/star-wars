@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store, select } from '@ngrx/store';
-import { loadPeople, loadPeopleGroup, loadPersonGroup } from '../../store/action';
+import { loadPeopleGroup, loadPersonGroup } from '../../store/action';
 import * as fromPeopleReducer from '../../store/reducer'
-import { combineLatest, map } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { CreatePersonDialogComponent } from '../create-person-dialog/create-person-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-people-list',
@@ -14,7 +16,7 @@ import { combineLatest, map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleListComponent implements OnInit{
-
+  public dialog = inject(MatDialog);
   private store = inject(Store);
 
   ngOnInit(): void {
@@ -36,5 +38,12 @@ export class PeopleListComponent implements OnInit{
   loadPersonDetails(url: string){
     console.log(url);
     this.store.dispatch(loadPersonGroup.personLoaded({url}))
+  }
+
+  openAddPerson(){
+    const dialogRef = this.dialog.open(CreatePersonDialogComponent, {
+      width: '400px',
+      height: '500px'
+    });
   }
 }

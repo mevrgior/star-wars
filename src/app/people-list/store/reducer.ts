@@ -1,6 +1,22 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { PeopleStateInterface } from "../types/people.state.interface";
-import { loadPeopleGroup, loadPersonGroup } from "./action";
+import { addPersonGroup, loadPeopleGroup, loadPersonGroup } from "./action";
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { PeopleInterface } from "../types/people.interface";
+
+// export interface State extends EntityState<PeopleStateInterface> {
+//     isLoadingPeople: boolean,
+//     isLoadedPeople: boolean,
+//     people: PeopleInterface[],
+//     isLoadingPerson: boolean,
+//     isLoadedPerson: boolean,
+//     person: PeopleInterface
+// }
+
+// export const adapter: EntityAdapter<PeopleStateInterface> =
+//     createEntityAdapter<PeopleStateInterface>({
+//         selectId: ()
+//     })
 
 const initialState: PeopleStateInterface = {
     isLoadingPeople: false,
@@ -12,7 +28,7 @@ const initialState: PeopleStateInterface = {
 }
 
 const peopleFeature = createFeature({
-    name: 'people',
+    name: 'peopleState',
     reducer: createReducer(
         initialState,
         on(loadPeopleGroup.peopleLoaded, state => ({ ...state, isLoadingPeople: true})),
@@ -28,8 +44,11 @@ const peopleFeature = createFeature({
             isLoadingPerson: false,
             isLoadedPerson: true,
             person: action.person
-        }) )
-
+        })),
+        // on(addPersonGroup.addPerson, (state,action) => ({
+        //     ...state,
+        //     person: 
+        // }))
     )
 })
 

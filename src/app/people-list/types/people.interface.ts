@@ -1,4 +1,5 @@
 export interface PeopleInterface {
+    id: string;
     name: string;
     height: string;
     mass: string;

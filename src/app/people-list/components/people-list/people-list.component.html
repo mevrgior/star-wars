@@ -3,7 +3,7 @@
         {{vm | json}}
     </div> -->
     <button (click)="onLoadPeople()" [disabled]="vm.isLoadingPeople">Load People</button>
-
+    <button mat-raised-button color="primary" (click)="openAddPerson()">Add Person</button>
     <div>
         <h2>Star Wars Characters</h2>
         <table>
@@ -35,14 +35,14 @@
       </div>
 
       @if(vm.selectedPerson) {
-        <h3>Details for {{ vm.selectedPerson.name }}</h3>
+        <h3>You selected {{ vm.selectedPerson.name }}</h3>
         <p><strong>Height:</strong> {{ vm.selectedPerson.height }}</p>
         <p><strong>Mass:</strong> {{ vm.selectedPerson.mass }}</p>
-        <p><strong>Hair Color:</strong> {{ vm.selectedPerson.hair_color }}</p>
-        <p><strong>Skin Color:</strong> {{ vm.selectedPerson.skin_color }}</p>
-        <p><strong>Eye Color:</strong> {{ vm.selectedPerson.eye_color }}</p>
         <p><strong>Birth Year:</strong> {{ vm.selectedPerson.birth_year }}</p>
         <p><strong>Gender:</strong> {{ vm.selectedPerson.gender }}</p>
+        <!-- <p><strong>Hair Color:</strong> {{ vm.selectedPerson.hair_color }}</p>
+        <p><strong>Skin Color:</strong> {{ vm.selectedPerson.skin_color }}</p>
+        <p><strong>Eye Color:</strong> {{ vm.selectedPerson.eye_color }}</p> -->
       }
       
 }

@@ -20,3 +20,10 @@ export const loadPersonGroup= createActionGroup({
         'Person Loaded Failure': props<{ error: any }>()
     }
 });
+
+export const addPersonGroup= createActionGroup({
+    source: 'Person Dialog',
+    events: {
+        'addPerson': props<{person: PeopleInterface}>(),
+    }
+});
