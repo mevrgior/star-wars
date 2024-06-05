@@ -6,5 +6,6 @@ export interface PeopleStateInterface {
     people: PeopleInterface[]
     isLoadingPerson: boolean,
     isLoadedPerson: boolean,
-    person: PeopleInterface | null | undefined
+    selectedPerson: PeopleInterface | null | undefined,
+    localPeople: PeopleInterface[]
 }

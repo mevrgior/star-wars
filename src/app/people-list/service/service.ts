@@ -15,9 +15,9 @@ export class PeopleApiService {
         const idMatch = url.match(/\/(\d+)\/$/);
         return idMatch ? idMatch[1] : '';
       }
-      
-    getPagedPeople(): Observable<PeopleInterface[]> {
-        return this.http.get<PeopleResponseInterface>('https://swapi.dev/api/people/')
+
+    getPagedPeople(page: string): Observable<PeopleInterface[]> {
+        return this.http.get<PeopleResponseInterface>('https://swapi.dev/api/people/?page=' + page)
         .pipe(
             map(response => 
                 response.results.map(person => ({

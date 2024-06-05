@@ -27,3 +27,10 @@ export const addPersonGroup= createActionGroup({
         'addPerson': props<{person: PeopleInterface}>(),
     }
 });
+
+export const selectPersonGroup= createActionGroup({
+    source: 'Person Detail',
+    events: {
+        'selectPerson': props<{person: PeopleInterface}>(),
+    }
+});

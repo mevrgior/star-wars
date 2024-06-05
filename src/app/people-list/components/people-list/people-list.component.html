@@ -2,47 +2,44 @@
     <!-- <div>
         {{vm | json}}
     </div> -->
-    <button (click)="onLoadPeople()" [disabled]="vm.isLoadingPeople">Load People</button>
-    <button mat-raised-button color="primary" (click)="openAddPerson()">Add Person</button>
-    <div>
-        <h2>Star Wars Characters</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Height</th>
-              <th>Mass</th>
-              <th>Birth Year</th>
-              <th>Gender</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(person of vm.people; track $index) {
-                <tr (click)="loadPersonDetails(person.url)">
-                    <td><a>{{ person.name }}</a></td>
-                    <td><a>{{ person.height }}</a></td>
-                    <td><a>{{ person.mass }}</a></td>
-                    <td><a>{{ person.birth_year }}</a></td>
-                    <td><a>{{ person.gender }}</a></td>
-                  </tr>
-            }
-          </tbody>
-        </table>
-        <!-- <div class="pagination">
-          <button (click)="loadPrevious()" [disabled]="!previous">Previous</button>
-          <button (click)="loadNext()" [disabled]="!next">Next</button>
-        </div> -->
-      </div>
+  <button mat-raised-button (click)="onLoadPeople()" [disabled]="vm.isLoadingPeople">Load People</button>
+  <button mat-raised-button color="primary" (click)="openAddPerson()">Add Person</button>
 
-      @if(vm.selectedPerson) {
-        <h3>You selected {{ vm.selectedPerson.name }}</h3>
-        <p><strong>Height:</strong> {{ vm.selectedPerson.height }}</p>
-        <p><strong>Mass:</strong> {{ vm.selectedPerson.mass }}</p>
-        <p><strong>Birth Year:</strong> {{ vm.selectedPerson.birth_year }}</p>
-        <p><strong>Gender:</strong> {{ vm.selectedPerson.gender }}</p>
-        <!-- <p><strong>Hair Color:</strong> {{ vm.selectedPerson.hair_color }}</p>
-        <p><strong>Skin Color:</strong> {{ vm.selectedPerson.skin_color }}</p>
-        <p><strong>Eye Color:</strong> {{ vm.selectedPerson.eye_color }}</p> -->
+  <div class="wrapper">
+    <div class="list-container">
+      <h2>Star Wars Characters</h2>
+      @if(vm.isLoadingPeople){
+        <mat-spinner></mat-spinner>
       }
-      
+      <mat-selection-list role="list">
+        @for(person of vm.people; track $index) {
+          <mat-list-item role="listitem"(click)="loadPersonDetails(person)">{{ person.name }}</mat-list-item>
+        }
+      </mat-selection-list>
+    </div>
+    <div class="details-container">
+      @if(vm.selectedPerson) {
+        <mat-card>
+          <mat-card-title>{{ vm.selectedPerson.name }}</mat-card-title>
+          <mat-card-content>        
+            <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+              <mat-chip>
+                <p><strong>Height:</strong> {{ vm.selectedPerson.height }}</p>
+              </mat-chip>
+              <mat-chip>
+                <p><strong>Mass:</strong> {{ vm.selectedPerson.mass }}</p>
+              </mat-chip>
+              <mat-chip>
+                <p><strong>Birth Year:</strong> {{ vm.selectedPerson.birth_year }}</p>
+              </mat-chip>
+              <mat-chip>
+                <p><strong>Gender:</strong> {{ vm.selectedPerson.gender }}</p>
+              </mat-chip>
+            </mat-chip-listbox>
+          </mat-card-content>
+            
+        </mat-card>
+      }
+    </div>
+  </div>
 }

@@ -1,5 +1,5 @@
 <h3 mat-dialog-title>Add a New Person</h3>
-<div mat-dialog-content>
+<mat-dialog-content>
   <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>Name</mat-label>
@@ -14,18 +14,6 @@
       <input matInput formControlName="mass">
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Hair Color</mat-label>
-      <input matInput formControlName="hair_color">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Skin Color</mat-label>
-      <input matInput formControlName="skin_color">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Eye Color</mat-label>
-      <input matInput formControlName="eye_color">
-    </mat-form-field>
-    <mat-form-field>
       <mat-label>Birth Year</mat-label>
       <input matInput formControlName="birth_year">
     </mat-form-field>
@@ -38,5 +26,5 @@
       <button mat-button type="submit" [disabled]="!personForm.valid">Add</button>
     </div>
   </form>
-</div>
+</mat-dialog-content>
 
